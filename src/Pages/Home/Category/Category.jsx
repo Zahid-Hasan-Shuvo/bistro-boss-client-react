@@ -33,49 +33,49 @@ const Category = () => {
     >
       <SwiperSlide>
         <img src={slide1} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Salads
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide2} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Pizza
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide3} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Soup
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide4} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Deserts
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide5} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Salads
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide4} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Deserts
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide1} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Birani
         </h3>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide1} alt="" />
-        <h3 className="text-center text-white uppercase -mt-16 text-3xl">
+        <h3 className="text-center text-white uppercase -mt-16 text-2xl">
           Kacci
         </h3>
       </SwiperSlide>
