@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItems from "../../Shared/MenuItems/MenuItems";
 
+
 const PopularMenu = () => {
   const [menu, setMenu] = useState([]);
 
@@ -33,6 +34,11 @@ const PopularMenu = () => {
 </div>
 <div className="text-center my-4">
 <button className="btn btn-outline border-0 border-b-4 text-center  mt-4 text-green-500">View full menu</button>
+</div>
+
+<div className=" bg-black my-32">
+
+  <h1 className="text-center py-24 text-4xl  font-serif">Call Us: +88 01923456783</h1>
 </div>
     </section>
   );
