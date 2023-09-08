@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItems from "../../Shared/MenuItems/MenuItems";
 import useMenu from "../../../hooks/useMenu";
