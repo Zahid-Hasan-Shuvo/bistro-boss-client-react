@@ -3,9 +3,10 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 const Login = () => {
+
     const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
     // const navigate = useNavigate();
@@ -27,15 +28,15 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // Swal.fire({
-                //     title: 'User Login Successful.',
-                //     showClass: {
-                //         popup: 'animate__animated animate__fadeInDown'
-                //     },
-                //     hideClass: {
-                //         popup: 'animate__animated animate__fadeOutUp'
-                //     }
-                // });
+                Swal.fire({
+                    title: 'User Login Successful.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
                 // navigate(from, { replace: true });
             })
     }
@@ -86,7 +87,7 @@ const Login = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                                <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                                <input disabled={disabled} className="btn text-orange-950 bg-green-900" type="submit" value="Login" />
                             </div>
                         </form>
                         <p className='text-center'><small>New Here? <Link to="/signup">Create an account</Link> </small></p>
