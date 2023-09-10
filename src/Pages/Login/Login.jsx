@@ -4,15 +4,76 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
+import { FaGithub, FaGoogle } from 'react-icons/fa';
+import app from '../../firebase/firebase.config';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth } from 'firebase/auth';
 
 const Login = () => {
 
     const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
-    // const navigate = useNavigate();
-    // const location = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    // const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
+
+
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+    
+  
+   const  handleGoogle =()=>{
+   
+    signInWithPopup(auth, googleProvider)
+    .then(result=>{
+      const user=result.user;
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'User created Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      if(user){
+        navigate("/")
+      }
+  
+  
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  
+   }
+  
+   const  handleGithub =()=>{
+   
+    signInWithPopup(auth, githubProvider)
+    .then(result=>{
+      const user=result.user;
+      
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'User created Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      if(user){
+        navigate("/")
+      }
+  
+  
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  
+   }
+
+
+
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -27,7 +88,7 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+             
                 Swal.fire({
                     title: 'User Login Successful.',
                     showClass: {
@@ -37,7 +98,7 @@ const Login = () => {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
                 });
-                // navigate(from, { replace: true });
+                navigate(from, { replace: true });
             })
     }
 
@@ -89,8 +150,12 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <input disabled={disabled} className="btn text-orange-950 bg-green-900" type="submit" value="Login" />
                             </div>
+                            <p className="text-center">OR</p>
+         <div className="flex justify-evenly" >
+         <FaGoogle onClick={handleGoogle} className="text-3xl text-yellow-900"/> <FaGithub onClick={handleGithub} className="text-3xl text-green-50"/> 
+         </div>
                         </form>
-                        <p className='text-center'><small>New Here? <Link to="/signup">Create an account</Link> </small></p>
+                        <p className='text-center'><small>New Here? <Link to="/signup" className="text-orange-800">Create an account</Link> </small></p>
                     </div>
                 </div>
             </div>

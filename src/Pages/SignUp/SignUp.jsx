@@ -2,32 +2,98 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
-
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
 const SignUp = () => {
+  
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+ const  handleGoogle =()=>{
  
-    const {createUser} =useContext(AuthContext)
+  signInWithPopup(auth, googleProvider)
+  .then(result=>{
+    const user=result.user;
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'User created Successfully!',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    if(user){
+      navigate("/")
+    }
+
+
+  })
+  .catch(error=>{
+    console.log(error);
+  })
+
+ }
+
+ const  handleGithub =()=>{
+ 
+  signInWithPopup(auth, githubProvider)
+  .then(result=>{
+    const user=result.user;
+    
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'User created Successfully!',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    if(user){
+      navigate("/")
+    }
+
+
+  })
+  .catch(error=>{
+    console.log(error);
+  })
+
+ }
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+ 
+    const {createUser, updateUserProfile} =useContext(AuthContext)
+    const navigate=useNavigate()
 
     const onSubmit = data =>{
-        console.log(data);
+   
         createUser(data.email, data.password)
         .then(result=>{
             const loggedUser=result.user
+            
+            updateUserProfile(data.name, data.photoURL)
+            .then(()=>{
+              console.log('user profile is updated');
+              reset()
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'User created Successfully!',
+                showConfirmButton: false,
+                timer: 1500
+              })
 
-            Swal.fire({
-                title: 'User Created Successful.',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-            });
+navigate("/")
+
+            })
+            .catch()
+
+           
 
         })
     } 
@@ -57,6 +123,17 @@ const SignUp = () => {
             
           </div>
 
+
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input type="text" placeholder="photo url" {...register("photoURL",{ required: true })  } className="input input-bordered" />
+            {errors.photoURL && <span className="text-red-500">photo URL is required</span>}
+            
+          </div>
+
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -77,16 +154,18 @@ const SignUp = () => {
             {errors.password?.type === 'maxLength' && <p className="text-red-500">password should be minimum 30 </p>}
             {errors.password?.type === 'pattern' && <p className="text-red-500">should be alphbet first  </p>}
 
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-            </label>
+           
           </div>
           <div className="form-control mt-6">
          
             <input className="btn  text-orange-950 bg-green-900" type="submit" value="Submit" />
           </div>
+          <p className="text-center">OR</p>
+         <div className="flex justify-evenly" >
+         <FaGoogle onClick={handleGoogle} className="text-3xl text-yellow-900"/> <FaGithub onClick={handleGithub} className="text-3xl text-green-50"/> 
+         </div>
         </form>
-        <p className='text-center'><small>Already have an account? <Link to="/login">Login</Link> </small></p>
+        <p className='text-center'><small>Have an account? <Link to="/login" className="text-orange-800" >login</Link> </small></p>
       </div>
     </div>
   </div>
