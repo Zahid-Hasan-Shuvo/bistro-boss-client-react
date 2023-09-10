@@ -24,7 +24,7 @@ const SignUp = () => {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'User created Successfully!',
+      title: ' Welcome to Bistroboss restrurent!',
       showConfirmButton: false,
       timer: 1500
     })
