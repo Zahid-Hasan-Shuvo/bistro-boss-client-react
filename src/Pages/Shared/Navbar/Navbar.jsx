@@ -24,9 +24,9 @@ const handleLogOut =()=>{
       <li className="uppercase"><Link to="/secret">Secret</Link></li>
       <li className="uppercase"><Link to="/order/salad">Order</Link></li>
       <li className="uppercase">
-    <Link to="/"> 
+    <Link to="/dashboard/mycart"> 
      < FaShoppingCart   />
-      <div className="badge badge-secondary">{cart?.length || 0}</div>
+      <div className="badge badge-secondary">+{cart?.length || 0}</div>
    
     
     </Link>
