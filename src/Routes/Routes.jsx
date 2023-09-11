@@ -7,10 +7,8 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Secret from "../Pages/Secret/Secret";
-
 import MyCart from "../Pages/MyCart/MyCart";
 import Dashboard from "../Layout/Dashboard";
-
 
 
 

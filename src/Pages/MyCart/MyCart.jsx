@@ -1,23 +1,57 @@
 import { Helmet } from "react-helmet-async";
 import useCart from "../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
 
   const total = cart.reduce((sum, item) => item.price + sum, 0);
 
+
+const handleDelete =(item)=>{
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+     fetch(`http://localhost:3000/carts/${item._id}`, {
+      method: "DELETE"
+     })
+     .then(res=>res.json())
+     .then(data=>{
+      if(data.deletedCount>0){
+        refetch()
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+     })
+
+    }
+  })
+}
+
+
+
   return (
-    <div>
+    <div className="w-full">
       <Helmet>
         <title>My Cart </title>
       </Helmet>
 
     
-<div className="flex justify-around items-center   uppercase">
-<div className="text-3xl"> Total items: {cart.length}</div>
+<div className="flex justify-around items-center pb-8  ">
+<div className="text-2xl"> Total items: {cart.length}</div>
 
-<div className="text-3xl">Total price: ${total}</div>
+<div className="text-2xl">Total price: ${total}</div>
 
 <button className="btn btn-sm btn-warning">Pay</button>
 
@@ -60,7 +94,7 @@ const MyCart = () => {
       </td>
       <td className="text-end">${item.price}</td>
       <td>
-        <button className="btn btn-ghost btn-sm bg-red-700 text-white"> <FaTrash></FaTrash> </button>
+        <button onClick={()=>handleDelete(item)} className="btn btn-ghost btn-sm bg-red-700 text-white"> <FaTrash></FaTrash> </button>
       </td>
     </tr>
     )

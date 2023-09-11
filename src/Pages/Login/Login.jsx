@@ -148,7 +148,7 @@ const Login = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                                <input disabled={false} className="btn text-orange-950 bg-green-900" type="submit" value="Login" />
+                                <input disabled={disabled} className="btn text-orange-950 bg-green-900" type="submit" value="Login" />
                             </div>
                             <p className="text-center">OR</p>
          <div className="flex justify-evenly" >
