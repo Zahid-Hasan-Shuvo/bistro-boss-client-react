@@ -4,6 +4,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import {  FaShoppingCart  } from 'react-icons/fa';
 import useCart from "../../../hooks/useCart";
 
+
 const Navbar = () => {
 
 const {user, logOut}=useContext(AuthContext)
@@ -36,10 +37,10 @@ const handleLogOut =()=>{
      
 {
 user? <>
-<li onClick={handleLogOut} className="btn btn-ghost">logout</li>
+<li onClick={handleLogOut} className="btn btn-ghost"> logout</li>
 
 
-</>:<> <li className="uppercase"><Link to="/login">Login</Link></li></>
+</>:<> <li className="uppercase"><Link to="/login">  Login</Link></li></>
 
 
 }
