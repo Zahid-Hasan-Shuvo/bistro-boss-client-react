@@ -20,6 +20,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [token, setToken]=useState('')
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -61,6 +62,7 @@ const AuthProvider = ({ children }) => {
 )
             localStorage.setItem('access-token', data.data.token
             )
+            setToken(data.data.token);
             setLoading(false);
         })
     }
@@ -87,7 +89,8 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     updateUserProfile,
-    googleSignIn
+    googleSignIn,
+    token
   };
 
   return (

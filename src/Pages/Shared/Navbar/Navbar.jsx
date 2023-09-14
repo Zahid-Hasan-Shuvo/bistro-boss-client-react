@@ -37,7 +37,7 @@ const handleLogOut =()=>{
      
 {
 user? <>
-<li onClick={handleLogOut} className="btn btn-ghost">Logou....t</li>
+<li onClick={handleLogOut} className="btn btn-ghost">Logout</li>
 
 
 </>:<> <li className="uppercase"><Link to="/login">  Login</Link></li></>

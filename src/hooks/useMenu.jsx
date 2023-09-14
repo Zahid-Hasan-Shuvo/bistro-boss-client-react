@@ -10,7 +10,6 @@ const useMenu=()=>{
         .then((data) => {
      
           setMenu(data);
-          setLoading(false)
         });
     }, []);
 
