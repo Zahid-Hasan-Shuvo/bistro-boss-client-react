@@ -9,11 +9,16 @@ import {
   FaBook,
 } from "react-icons/fa";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+// import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
   //TODO:  we have to load data from database..
-  const isAdmin = true;
+  // const isAdmin = true;
+
+  const [isAdmin] =  useAdmin()
+
 
   return (
     <div className="drawer lg:drawer-open">
